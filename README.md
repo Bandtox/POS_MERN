@@ -17,8 +17,8 @@ POS-MERN is a robust and user-friendly Point of Sale application designed to str
 ## Features
 
 - User authentication and authorization
-- Product management (CRUD operations)
-- Inventory management
+- Dual role: User and Admin
+- Inventory management (CRUD Operations)
 - Real-time data updates
 - Sales Dashboard
 - Transactions management
