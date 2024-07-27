@@ -1,0 +1,151 @@
+/* Inventory container */
+.inventory-container {
+  width: 100%;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box; /* Ensure padding does not affect width */
+}
+
+/* Title styling */
+.title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+/* Form and list styling */
+.add-product-form, .products-list {
+  margin-bottom: 20px;
+}
+
+/* Form titles and list titles */
+.form-title, .list-title {
+  color: #555;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Input fields */
+.input-field {
+  padding: 12px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 24px); /* Adjusted to account for padding and margins */
+  box-sizing: border-box;
+}
+
+/* Button styles */
+.add-button, .save-button, .cancel-button, .edit-button, .delete-button, .fetch-button, .submit-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.9em;
+}
+
+/* Individual button styles */
+.add-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.add-button:hover {
+  background-color: #218838;
+}
+
+.save-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.save-button:hover {
+  background-color: #0069d9;
+}
+
+.cancel-button {
+  background-color: #6c757d;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.cancel-button:hover {
+  background-color: #5a6268;
+}
+
+.edit-button {
+  background-color: #ffc107;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.edit-button:hover {
+  background-color: #e0a800;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.fetch-button {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.fetch-button:hover {
+  background-color: #138496;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.submit-button:hover {
+  background-color: #0069d9;
+}
+
+/* Item styling */
+.product-item {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+/* Info styling */
+.product-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Edit form styling */
+.edit-form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}

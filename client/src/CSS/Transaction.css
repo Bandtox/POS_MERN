@@ -1,0 +1,77 @@
+.transaction-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.sales-summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sales-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 45%;
+  background-color: #f9f9f9;
+}
+
+.transactions-list {
+  margin-top: 20px;
+}
+
+.transaction-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.transaction-item button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.transaction-item button:hover {
+  background-color: #0056b3;
+}
+
+.edit-form {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.edit-form input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.edit-form button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-form button:hover {
+  background-color: #218838;
+}

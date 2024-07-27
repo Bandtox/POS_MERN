@@ -1,123 +1,187 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const Inventory = require('./inventory');
-
+const mongoose = require("mongoose");
+const express = require("express");
 const router = express.Router();
-router.use(bodyParser.json());
 
-// Reuse existing mongoose connection from server.js
-const db = mongoose.connection;
+// Get a reference to the `user` database
+// const userDb = mongoose.connection.useDb("user");
 
 // Define Transaction Schema
 const transactionSchema = new mongoose.Schema({
-    date: Date,
-    total: Number,
-    products: Array
-});
-const Transaction = mongoose.model('Transaction', transactionSchema);
-
-// Check MongoDB connection
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-//     console.log("Connected to MongoDB");
-// });
-
-// GET root route
-router.get('/', (req, res) => {
-    res.send('Transactions API');
+  cart: [{
+    _id: mongoose.Schema.Types.ObjectId,
+    name: String,
+    price: Number,
+    quantity: Number,
+    spiceLevel: String
+  }],
+  total: Number,
+  address: String,
+  expectedDelivery: String,
+  date: { type: Date, default: Date.now }
 });
 
-// GET all transactions
-router.get('/all', async (req, res) => {
-    try {
-        const transactions = await Transaction.find({});
-        res.send(transactions);
-    } catch (err) {
-        console.error('Error fetching transactions:', err);
-        res.status(500).send('Internal server error.');
+const Transaction = mongoose.model("Transaction", transactionSchema);
+
+// POST a new transaction
+// POST a new transaction
+router.post("/", async (req, res) => {
+  try {
+    const { cart, total, address, expectedDelivery, date } = req.body;
+    if (!cart || !total || !address || !expectedDelivery) {
+      return res.status(400).send("Required fields are missing.");
     }
+
+    const newTransaction = new Transaction({
+      cart,
+      total,
+      address,
+      expectedDelivery,
+      date: date ? new Date(date) : undefined // Handle date if provided
+    });
+
+    await newTransaction.save();
+    res.status(201).send(newTransaction);
+  } catch (err) {
+    console.error("Error creating transaction:", err);
+    res.status(500).send("Internal server error.");
+  }
 });
 
-
-// GET transactions with limit
-router.get('/limit', async (req, res) => {
+// Get daily sales
+router.get("/daily", async (req, res) => {
     try {
-        const limit = parseInt(req.query.limit, 10) || 5;
-        const transactions = await Transaction.find({}).limit(limit).sort({ date: -1 }).exec();
-        res.send(transactions);
-    } catch (err) {
-        console.error('Error fetching transactions:', err);
-        res.status(500).send('Internal server error.');
-    }
-});
-
-
-// GET total sales for the current day
-router.get('/day-total', async (req, res) => {
-    try {
-        const date = req.query.date ? new Date(req.query.date) : new Date();
-        date.setHours(0, 0, 0, 0);
-        const endDate = new Date(date);
-        endDate.setHours(23, 59, 59, 999);
-
-        const transactions = await Transaction.find({ date: { $gte: date, $lte: endDate } });
-        const totalSales = transactions.reduce((acc, cur) => acc + cur.total, 0).toFixed(2);
-
-        const result = {
-            date: date,
-            total: totalSales
-        };
-        res.send(result);
-    } catch (err) {
-        console.error('Error fetching total sales:', err);
-        res.status(500).send('Internal server error.');
-    }
-});
-
-
-// GET transactions for a particular date
-router.get('/by-date', async (req, res) => {
-    try {
-        const startDate = new Date(req.query.startDate);
-        const endDate = new Date(req.query.endDate);
-        const transactions = await Transaction.find({ date: { $gte: startDate, $lte: endDate } });
-        res.send(transactions);
-    } catch (err) {
-        console.error('Error fetching transactions by date:', err);
-        res.status(500).send('Internal server error.');
-    }
-});
-
-
-// Add new transaction
-router.post('/new', async (req, res) => {
-    try {
-        const newTransaction = req.body;
-        const transaction = await Transaction.create(newTransaction);
-        res.sendStatus(200);
-        // Optionally, perform other operations here
-        Inventory.decrementInventory(transaction.products);
-    } catch (err) {
-        console.error('Error creating new transaction:', err);
-        res.status(500).send('Internal server error.');
-    }
-});
-
-
-// GET a single transaction
-router.get('/:transactionId', async (req, res) => {
-    try {
-        const transaction = await Transaction.findById(req.params.transactionId);
-        if (!transaction) {
-            return res.status(404).send('Transaction not found.');
+      const today = new Date();
+      const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+  
+      const dailySales = await Transaction.aggregate([
+        {
+          $match: {
+            date: { $gte: startOfDay, $lt: endOfDay }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            totalSales: { $sum: "$total" },
+            count: { $sum: 1 }
+          }
         }
-        res.send(transaction);
+      ]);
+  
+      res.json(dailySales[0] || { totalSales: 0, count: 0 });
     } catch (err) {
-        console.error('Error fetching transaction:', err);
-        res.status(500).send('Internal server error.');
+      console.error("Error fetching daily sales:", err);
+      res.status(500).send("Internal server error.");
     }
-});
+  });
+  
+  // Get monthly sales
+  router.get("/monthly", async (req, res) => {
+    try {
+      const today = new Date();
+      const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+  
+      const monthlySales = await Transaction.aggregate([
+        {
+          $match: {
+            date: { $gte: startOfMonth, $lt: endOfMonth }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            totalSales: { $sum: "$total" },
+            count: { $sum: 1 }
+          }
+        }
+      ]);
+  
+      res.json(monthlySales[0] || { totalSales: 0, count: 0 });
+    } catch (err) {
+      console.error("Error fetching monthly sales:", err);
+      res.status(500).send("Internal server error.");
+    }
+  });  
 
+  // Get all transactions
+router.get("/", async (req, res) => {
+    try {
+      const transactions = await Transaction.find();
+      res.json(transactions);
+    } catch (err) {
+      console.error("Error fetching transactions:", err);
+      res.status(500).send("Internal server error.");
+    }
+  });
+  
+  // Update a specific transaction
+  router.put("/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { cart, total, address, expectedDelivery, date } = req.body;
+  
+      const updatedTransaction = await Transaction.findByIdAndUpdate(
+        id,
+        { cart, total, address, expectedDelivery, date: date ? new Date(date) : undefined },
+        { new: true }
+      );
+  
+      if (!updatedTransaction) {
+        return res.status(404).send("Transaction not found.");
+      }
+  
+      res.json(updatedTransaction);
+    } catch (err) {
+      console.error("Error updating transaction:", err);
+      res.status(500).send("Internal server error.");
+    }
+  });
+  
+  // Delete a specific transaction
+  router.delete("/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      const deletedTransaction = await Transaction.findByIdAndDelete(id);
+  
+      if (!deletedTransaction) {
+        return res.status(404).send("Transaction not found.");
+      }
+  
+      res.json({ message: "Transaction deleted successfully." });
+    } catch (err) {
+      console.error("Error deleting transaction:", err);
+      res.status(500).send("Internal server error.");
+    }
+  });
+// Get most sold product
+router.get("/top-product", async (req, res) => {
+    try {
+      const topProduct = await Transaction.aggregate([
+        { $unwind: "$cart" },
+        {
+          $group: {
+            _id: "$cart.name",
+            totalQuantity: { $sum: "$cart.quantity" },
+            totalSales: { $sum: { $multiply: ["$cart.price", "$cart.quantity"] } }
+          }
+        },
+        { $sort: { totalQuantity: -1 } },
+        { $limit: 1 }
+      ]);
+  
+      if (topProduct.length > 0) {
+        res.json(topProduct[0]);
+      } else {
+        res.json({ name: "No products", totalQuantity: 0, totalSales: 0 });
+      }
+    } catch (err) {
+      console.error("Error fetching top product:", err);
+      res.status(500).send("Internal server error.");
+    }
+  });
+    
 
 module.exports = router;
