@@ -19,10 +19,11 @@ POS-MERN is a robust and user-friendly Point of Sale application designed to str
 - User authentication and authorization
 - Product management (CRUD operations)
 - Inventory management
-- Sales processing and receipt generation
-- Customer management
 - Real-time data updates
-- Responsive design for desktop and mobile
+- Sales Dashboard
+- Transactions management
+- Online Food ordering
+- Cart
 
 ## Installation
 
@@ -42,11 +43,6 @@ To run this application locally, follow these steps:
    ```bash
    cd ../client
    npm install
-   ```
-
-4. **Set up environment variables:** Create a .env file in the server directory. Add the following variables to the .env file:
-   ```bash
-   MONGO_URI=your_mongo_db_connection_string
    ```
    
 5.**Run the application:**
