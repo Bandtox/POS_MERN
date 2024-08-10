@@ -65,8 +65,8 @@ CLIENT
 
 - **Login/Register**: Create an account or log in with existing credentials.
 - **Product Management**: Add, edit, or delete products.
-- **Inventory Management**: Keep track of stock levels.
-- **Sales Processing**: Process sales transactions and generate receipts.
+- **Inventory Management**: Keep track of stock.
+- **Sales Processing**: Process sales transactions.
 - **Customer Management**: Manage customer information and purchase history.
 
 ## Technologies Used
