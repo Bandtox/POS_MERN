@@ -50,7 +50,7 @@ To run this application locally, follow these steps:
 SERVER
    ```bash
    cd server
-   npm start
+   node seever.js
    ```
 
 CLIENT
