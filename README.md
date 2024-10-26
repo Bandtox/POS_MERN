@@ -17,12 +17,13 @@ POS-MERN is a robust and user-friendly Point of Sale application designed to str
 ## Features
 
 - User authentication and authorization
-- Product management (CRUD operations)
-- Inventory management
-- Sales processing and receipt generation
-- Customer management
+- Dual role: User and Admin
+- Inventory management (CRUD Operations)
 - Real-time data updates
-- Responsive design for desktop and mobile
+- Sales Dashboard
+- Transactions management
+- Online Food ordering
+- Cart
 
 ## Installation
 
@@ -43,18 +44,13 @@ To run this application locally, follow these steps:
    cd ../client
    npm install
    ```
-
-4. **Set up environment variables:** Create a .env file in the server directory. Add the following variables to the .env file:
-   ```bash
-   MONGO_URI=your_mongo_db_connection_string
-   ```
    
 5.**Run the application:**
 
 SERVER
    ```bash
    cd server
-   npm start
+   node server.js
    ```
 
 CLIENT
@@ -69,8 +65,8 @@ CLIENT
 
 - **Login/Register**: Create an account or log in with existing credentials.
 - **Product Management**: Add, edit, or delete products.
-- **Inventory Management**: Keep track of stock levels.
-- **Sales Processing**: Process sales transactions and generate receipts.
+- **Inventory Management**: Keep track of stock.
+- **Sales Processing**: Process sales transactions.
 - **Customer Management**: Manage customer information and purchase history.
 
 ## Technologies Used
