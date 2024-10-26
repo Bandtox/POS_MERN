@@ -1,0 +1,61 @@
+/* Footer.css */
+
+.footer {
+  display: flex;
+  justify-content: space-between; /* Align items on both sides */
+  align-items: center;
+  padding: 20px;
+  background-color: #333; /* Footer background color */
+  color: #fff; /* Text color */
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+}
+
+.footer-left p {
+  margin: 0; /* Remove default margin */
+}
+
+.footer-links {
+  display: flex; /* Align links in a single line */
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 5px 0 0; /* Add some space above */
+}
+
+.footer-links li {
+  margin-right: 20px; /* Space between items */
+  cursor: pointer; /* Pointer on hover */
+  font-size: 0.8em; /* Smaller font size */
+  transition: color 0.3s; /* Smooth color change */
+}
+
+.footer-links li:last-child {
+  margin-right: 0; /* Remove margin for the last item */
+}
+
+.footer-links li:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px; /* Space between icons */
+}
+
+.social-links a {
+  color: #fff; /* Icon color */
+  font-size: 1.5em; /* Icon size */
+  transition: color 0.3s; /* Smooth color change */
+}
+
+.social-links a:hover {
+  color: #007bff; /* Change color on hover */
+}

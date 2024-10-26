@@ -1,28 +1,44 @@
 /* General container styles */
 .products-container {
-    display: flex;
-    margin: 20px;
+    display: flex;                       /* Use flexbox for layout */
+    flex-wrap: wrap;                    /* Allow items to wrap to the next line */
+    margin: 20px; 
+    margin-top: -15px;                      /* Outer margin for spacing */
+    padding: 10px;                      /* Inner padding for better spacing */
+    background-color: #f9f9f9;          /* Light background for visual separation */
+    border-radius: 10px;                /* Rounded corners for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    gap: 20px;                          /* Space between items */
+    justify-content: space-around;      /* Distribute items evenly */
 }
 
+/* Sidebar styles */
 .cuisines-sidebar {
+    margin-top: 20px;
     width: 20%;
-    background-color: #f4f4f9;
-    padding: 15px;
-    border-radius: 8px;
-    border-right: 3px solid #ccc;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    border-right: 3px solid #eee;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: sticky;
+    top: 0;
+    font-family: 'Arial', sans-serif;
 }
 
+/* Sidebar Title */
 .cuisines-sidebar h2 {
-    font-family: Arial, sans-serif;
+    font-size: 1.8em;
     color: #333;
     text-align: center;
-    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
+/* List styles */
 .cuisines-sidebar ul {
     font-size: 1.2em;
     list-style: none;
@@ -31,29 +47,64 @@
     flex-grow: 1;
 }
 
+/* List item styles */
 .cuisines-sidebar li {
     cursor: pointer;
-    padding: 10px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    color: #555;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #000; /* Set text color to black */
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+/* Hover and selected states */
 .cuisines-sidebar li:hover,
 .cuisines-sidebar li.selected {
-    background-color: #ddd;
-    color: #000;
-    transform: scale(1.02);
-    /* Slight scale effect on hover */
+    background-color: #e0f0ff; /* Light blue background to complement #007bff */
+    color: #0056b3; /* Darker shade of blue for hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
 }
 
+/* Subtle indicator for selected cuisine */
+.cuisines-sidebar li.selected::before {
+    content: '•';
+    color: #007bff;
+    font-size: 1.5em;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Separator between items */
 .cuisines-sidebar li:not(:last-child) {
     border-bottom: 1px solid #eee;
-    /* Add separator between items */
 }
 
+/* Responsive sidebar adjustments */
+@media (max-width: 768px) {
+    .cuisines-sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .cuisines-sidebar ul {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .cuisines-sidebar li {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* Content styles */
 .products-content {
     flex: 1;
     width: 80%;
@@ -69,7 +120,6 @@
 
 .cuisine-group {
     margin-bottom: 30px;
-    /* Reduced margin */
 }
 
 .cuisine-group h2 {
@@ -77,121 +127,152 @@
     color: #333;
     text-align: left;
     margin-bottom: 15px;
-    /* Reduced margin */
 }
 
 .products-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px; /* Increased gap for better spacing */
     justify-content: space-between;
 }
 
+/* Product card styles */
 .product-card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: calc(33% - 20px);
-    /* Adjust width as needed */
+    width: calc(33% - 20px); /* Adjusted width */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-sizing: border-box;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Enhanced hover effect */
 .product-card:hover {
     transform: translateY(-8px);
-    /* Slightly reduced translateY */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Product image styling */
 .product-card img {
     width: 100%;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
-    /* Slightly reduced border-radius */
     margin-bottom: 10px;
-    /* Reduced margin */
 }
 
+/* Enhanced dish name styling */
 .product-card h2 {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     color: #333;
-    font-size: 1.1em;
-    /* Slightly reduced font size */
+    font-size: 1.2em;
+    font-weight: bold;
     margin: 5px 0;
-    /* Reduced margin */
 }
 
-
-
+/* Enhanced description styling */
 .product-card p {
+    font-style: italic;
+    font-weight: 500;
+    color: #666;
     margin: 5px 0;
 }
 
+/* Enhanced quantity input box styling */
+.product-options input[type="number"],
+.product-options select {
+    width: 95%; /* Adjust width for consistency */
+    padding: 6px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Segoe UI', sans-serif;
+    transition: border-color 0.3s;
+    color: #333;
+    text-align: center;
+}
+
+.product-options input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Enhanced spice level dropdown styling */
+.product-options select {
+    width: 100%;
+    padding: 6px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Segoe UI', sans-serif;
+    color: #555;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+    background-color: #f9f9f9;
+}
+
+.product-options select:hover,
+.product-options select:focus {
+    border-color: #007bff;
+    background-color: #f4f4f9;
+}
+
+/* Product options section */
 .product-options {
     width: 100%;
-    margin-top: 10px; /* Reduced margin */
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px; /* Reduced gap */
-  }
+    gap: 8px;
+}
 
-  .product-options label {
+.product-options label {
     font-family: Arial, sans-serif;
     color: #555;
     font-size: 0.9em;
     display: flex;
     align-items: center;
-    gap: 8px; /* Reduced gap */
+    gap: 8px;
     width: 100%;
-  }
-
-  .product-options input[type="number"],
-  .product-options select {
-    padding: 4px; /* Reduced padding */
-    border: 2px solid #ddd;
-    border-radius: 4px; /* Slightly reduced border-radius */
-    font-size: 0.85em;
-    transition: border-color 0.3s;
-  }
-
-  .product-options input[type="number"] {
-    width: 90%; /* Slightly reduced width */
-    text-align: center;
-  }
-  .product-options select {
-    width: 90px; /* Slightly reduced width */
-  }
-  .product-options input[type="number"]:focus,
-.product-options select:focus {
-  border-color: #007bff;
-  outline: none;
 }
 
-
+/* Add to cart button */
 .add-to-cart-button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px; /* Reduced padding */
-    border-radius: 4px; /* Slightly reduced border-radius */
+    padding: 10px;
+    border-radius: 4px;
     cursor: pointer;
     width: 100%;
     font-family: Arial, sans-serif;
-    font-size: 0.9em; /* Slightly reduced font size */
-    margin-top: 10px; /* Kept margin */
+    font-size: 0.9em;
+    margin-top: 10px;
     transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .add-to-cart-button:hover {
+}
+
+.add-to-cart-button:hover {
     background-color: #0056b3;
-    transform: scale(1.03); /* Slightly reduced scale effect */
-  }
+    transform: scale(1.03);
+}
+
+/* Responsive design for product cards */
+@media (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 20px); /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        width: calc(100% - 20px); /* Full width for mobile */
+    }
+}

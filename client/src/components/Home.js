@@ -4,6 +4,7 @@ import UserNavbar from './UserNavbar';
 import Products from './Products';
 import Profile from './Profile';
 import Cart from './Cart';
+import UserHomePage from './UserHomePage';
 import '../CSS/Home.css';
 
 const Home = () => {
@@ -70,7 +71,7 @@ const Home = () => {
         <Routes>
           <Route 
             path="/" 
-            element={<Products onAddToCart={handleAddToCart} />} 
+            element={<UserHomePage />}  
           />
           <Route 
             path="/products" 

@@ -149,3 +149,10 @@
   align-items: center;
   margin-left: auto;
 }
+.product-image {
+  width: 100px; /* Set the width of the image */
+  height: auto; /* Maintain the aspect ratio */
+  border-radius: 8px; /* Optional: add rounded corners */
+  margin-right: 10px; /* Space between the image and text */
+  object-fit: cover; /* Ensure the image covers the space without distortion */
+}

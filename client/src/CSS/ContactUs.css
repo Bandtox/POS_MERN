@@ -1,0 +1,79 @@
+/* ContactUs.css */
+
+.contact-us {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: rgba(240, 240, 240, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.contact-us-image {
+  flex: 1; /* This will allow the image section to take up space */
+  max-width: 300px; /* Set a maximum width for the image section */
+}
+
+.contact-us-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.contact-us-form {
+  flex: 2; /* This will allow the form section to take up more space */
+  max-width: 500px; /* Set a maximum width for the form section */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-us-form h2 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.contact-us-form input[type="text"],
+.contact-us-form input[type="email"],
+.contact-us-form textarea {
+  width: 80%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+.contact-us-form input[type="text"]:focus,
+.contact-us-form input[type="email"]:focus,
+.contact-us-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.contact-us-form button {
+  padding: 12px 30px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-us-form button:hover {
+  background-color: #007bff;
+  transform: scale(1.05);
+}

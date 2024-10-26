@@ -7,6 +7,7 @@ const Dashboard = () => {
     const [monthlySales, setMonthlySales] = useState({ totalSales: 0, count: 0 });
     const [topProduct, setTopProduct] = useState("Loading...");
     const [monthlyGrowth, setMonthlyGrowth] = useState("Loading...");
+    const [loading, setLoading] = useState(true); // Loading state
 
     useEffect(() => {
         const fetchSalesData = async () => {
@@ -22,7 +23,7 @@ const Dashboard = () => {
                 setTopProduct(topProductResponse.data._id || "Product XYZ");
 
                 const totalSalesThisMonth = monthlyResponse.data.totalSales;
-                const totalSalesLastMonth = monthlyResponse.data.totalSales;
+                const totalSalesLastMonth = monthlyResponse.data.totalSales; // Ensure this is correct
 
                 const growth = totalSalesLastMonth > 0
                     ? ((totalSalesThisMonth - totalSalesLastMonth) / totalSalesLastMonth * 100).toFixed(2) + '%'
@@ -30,47 +31,48 @@ const Dashboard = () => {
                 setMonthlyGrowth(growth);
             } catch (error) {
                 console.error('Error fetching sales data:', error);
+            } finally {
+                setLoading(false); // Stop loading state
             }
         };
 
         fetchSalesData();
     }, []);
 
-    const calculateRevenue = (sales) => {
-        return sales.totalSales;
-    };
-
-    const calculateSales = (sales) => {
-        return sales.count;
-    };
+    const calculateRevenue = (sales) => sales.totalSales;
+    const calculateSales = (sales) => sales.count;
 
     return (
         <div className="dashboard-container">
             <h1 className="dashboard-title">Sales Dashboard</h1>
-            <div className="dashboard-cards">
-                <div className="dashboard-card">
-                    <h2>Daily Sales</h2>
-                    <p>Total Sales: ₹{calculateRevenue(dailySales).toLocaleString()}</p>
-                    <p>Number of Transactions: {calculateSales(dailySales).toLocaleString()}</p>
+            {loading ? ( // Show loading state
+                <div className="loading">Loading...</div>
+            ) : (
+                <div className="dashboard-cards">
+                    <div className="dashboard-card">
+                        <h2>Daily Sales</h2>
+                        <p>Total Sales: ₹{calculateRevenue(dailySales).toLocaleString()}</p>
+                        <p>Number of Transactions: {calculateSales(dailySales).toLocaleString()}</p>
+                    </div>
+                    <div className="dashboard-card">
+                        <h2>Monthly Sales</h2>
+                        <p>Total Sales: ₹{calculateRevenue(monthlySales).toLocaleString()}</p>
+                        <p>Number of Transactions: {calculateSales(monthlySales).toLocaleString()}</p>
+                    </div>
+                    <div className="dashboard-card">
+                        <h2>Total Revenue</h2>
+                        <p>₹{calculateRevenue(monthlySales).toLocaleString()}</p>
+                    </div>
+                    <div className="dashboard-card">
+                        <h2>Top Product</h2>
+                        <p>{topProduct}</p>
+                    </div>
+                    <div className="dashboard-card">
+                        <h2>Monthly Growth</h2>
+                        <p>{monthlyGrowth}</p>
+                    </div>
                 </div>
-                <div className="dashboard-card">
-                    <h2>Monthly Sales</h2>
-                    <p>Total Sales: ₹{calculateRevenue(monthlySales).toLocaleString()}</p>
-                    <p>Number of Transactions: {calculateSales(monthlySales).toLocaleString()}</p>
-                </div>
-                <div className="dashboard-card">
-                    <h2>Total Revenue</h2>
-                    <p>₹{calculateRevenue(monthlySales).toLocaleString()}</p>
-                </div>
-                <div className="dashboard-card">
-                    <h2>Top Product</h2>
-                    <p>{topProduct}</p>
-                </div>
-                <div className="dashboard-card">
-                    <h2>Monthly Growth</h2>
-                    <p>{monthlyGrowth}</p>
-                </div>
-            </div>
+            )}
         </div>
     );
 };

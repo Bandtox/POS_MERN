@@ -1,141 +1,235 @@
+/* Main Cart Container */
 .cart-container {
-    background-color: #f4f4f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 20px auto;
-  }
-  
-  .cart-title {
-    font-size: 2rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .cart-items {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .cart-item span {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  .cart-item-options {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .cart-item-options label {
-    margin-right: 10px;
-    font-weight: bold;
-  }
-  
-  .cart-item-options input[type="number"] {
-    width: 60px;
-    padding: 5px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .cart-item-options select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .remove-item-button {
-    background-color: #ff4d4d;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
-  }
-  
-  .remove-item-button:hover {
-    background-color: #e60000;
-  }
-  
-  .cart-summary {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .cart-summary-item {
-    margin-bottom: 15px;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .cart-summary-item:last-child {
-    margin-bottom: 0;
-  }
-  
-  .checkout-button {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .checkout-button:hover {
-    background-color: #218838;
-  }
-  
-  .cart-summary input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    margin-top: 10px; /* Add margin to separate it from other items */
-  }
-  
-  .cart-summary-item .address-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .cart-summary-item .address-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .cart-summary-item .address-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-  }
-  
-  .cart-summary-item .address-input:focus {
-    border-color: #28a745;
-    outline: none;
-  }
-  
+  background-color: #f4f4f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.cart-title {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Main Data Container */
+.cart-data-container {
+  display: flex;
+  gap: 30px; /* Increased gap for better spacing */
+  margin-top: 20px;
+}
+
+/* Items Container */
+.cart-items-container {
+  flex: 2;
+}
+
+.cart-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item Details */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0; /* Increased padding for more space */
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px; /* Increased margin for separation */
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 5%;
+  border: 2px solid #ddd;
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-price {
+  margin: 5px 0;
+}
+
+.cart-item-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px; /* Increased gap between options */
+  margin-top: 5px;
+  font-size: 0.85em;
+}
+
+.cart-item-options label {
+  font-family: Arial, sans-serif;
+  color: #555;
+  font-size: 0.85em;
+}
+
+.cart-item-options input[type="number"],
+.cart-item-options select {
+  width: 70px; /* Slightly wider input fields */
+  padding: 6px; /* Increased padding for better usability */
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.85em;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.cart-item-options input[type="number"]:focus,
+.cart-item-options select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.cart-item-options select {
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 5px center;
+  background-color: #f9f9f9;
+}
+
+.remove-item-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px; /* Increased padding for button */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.remove-item-button:hover {
+  background-color: #0056b3;
+}
+
+/* Cart Summary, Support, and Recommended Items */
+.cart-summary-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Gap between sections */
+}
+
+.cart-summary {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-summary h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff; /* Underline for emphasis */
+  padding-bottom: 5px;
+}
+
+.cart-summary-item {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 15px; /* Increased spacing between items */
+}
+
+.checkout-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 15px; /* Increased margin for spacing */
+  transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+  background-color: #0056b3;
+}
+
+/* Support Section */
+.support-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.support-section h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff; /* Underline for emphasis */
+  padding-bottom: 5px;
+}
+
+.support-section p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0 10px 0; /* Added bottom margin for spacing */
+}
+
+/* Recommended Items Section */
+.recommended-items {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recommended-items h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff; /* Underline for emphasis */
+  padding-bottom: 5px;
+}
+
+.recommended-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recommended-list li {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0; /* Increased spacing between recommended items */
+}
+.cart-summary input[type="text"] {
+  width: 100%;
+  padding: 12px; /* Increased padding for better usability */
+  border: 2px solid #ddd; /* Changed border thickness for emphasis */
+  border-radius: 6px; /* Slightly larger border radius for a softer look */
+  font-size: 1rem; /* Increased font size for readability */
+  box-sizing: border-box; /* Ensures padding is included in total width */
+  margin-top: 10px; /* Consistent top margin */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Added transition effects */
+}
+
+.cart-summary input[type="text"]::placeholder {
+  color: #aaa; /* Placeholder text color */
+  font-style: italic; /* Italic style for distinction */
+}
+
+.cart-summary input[type="text"]:focus {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle shadow effect */
+  outline: none; /* Remove default outline */
+}

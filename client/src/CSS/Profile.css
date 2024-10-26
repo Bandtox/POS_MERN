@@ -1,24 +1,169 @@
-/* src/components/Profile.css */
-.profile-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.profile-container h1 {
-    text-align: center;
-    color: #333;
+body {
+    background-color: #f8f9fa; /* Light gray background for contrast */
+    font-family: 'Arial', sans-serif; /* Consistent font across the profile */
 }
 
-.profile-details {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #555;
+.container {
+    display: flex; /* Flexbox layout for the container */
+    justify-content: space-between; /* Space between left and right */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px; /* Add padding to the container */
 }
 
-.profile-details p {
-    margin: 10px 0;
+.card {
+    flex: 1; /* Each card takes equal width */
+    margin: 0 15px; /* Margin between cards */
+    width: 350px; /* Fixed width for cards */
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 10px; /* Slightly more rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transition on hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.image img {
+    border-radius: 50%; /* Circular image */
+    transition: all 0.5s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for image */
+}
+
+.card:hover .image img {
+    transform: scale(1.1); /* Scale image on hover */
+}
+
+.btn {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 24px; /* Slightly larger font for name */
+    font-weight: bold;
+    color: #343a40; /* Darker color for better readability */
+}
+
+.idd {
+    font-size: 16px; /* Slightly larger font */
+    font-weight: 600;
+    color: #6c757d; /* Muted color for the handle */
+}
+
+.idd1 {
+    font-size: 14px; /* Larger font for visibility */
+}
+
+.number {
+    font-size: 24px; /* Larger font for numbers */
+    font-weight: bold;
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #495057; /* Darker color for contrast */
+}
+
+.btn1 {
+    height: 40px;
+    width: 150px;
+    border: 1px solid #007bff; /* Add border to define the button */
+    background-color: #ffffff; /* Change background to white */
+    color: #007bff; /* Primary color for the text */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Adequate padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transitions */
+}
+
+.btn1:hover {
+    background-color: #007bff; /* Change background on hover */
+    color: #ffffff; /* Change text color on hover */
+}
+
+.text span {
+    font-size: 14px; /* Slightly larger text */
+    color: #495057; /* Darker color for better readability */
+    font-weight: 500;
+}
+
+.icons i {
+    font-size: 22px; /* Larger icon size for better visibility */
+    margin: 0 5px; /* Space between icons */
+    color: #007bff; /* Primary color for icons */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.icons i:hover {
+    color: #0056b3; /* Darker shade on hover */
+}
+
+.join {
+    font-size: 16px; /* Larger font size for joined date */
+    color: #ffffff; /* White text for contrast */
+    font-weight: bold;
+}
+
+.date {
+    background-color: #007bff; /* Primary color for date background */
+    padding: 5px 10px; /* Padding around text */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.country {
+    font-size: 14px; /* Font size for country */
+    color: #007bff; /* Primary color for the country text */
+    margin-top: 5px; /* Space above country */
+}
+
+.extra-content,
+.latest-recipes {
+    max-width: 350px; /* Fixed width for extra content and latest recipes */
+    background-color: #ffffff; /* White background for contrast */
+    padding: 20px; /* Padding inside the extra content */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+}
+
+.content-title {
+    font-size: 22px; /* Larger font size for section titles */
+    margin-bottom: 10px; /* Space below titles */
+    color: #007bff; /* Primary color for titles */
+    border-bottom: 2px solid #007bff; /* Underline for emphasis */
+    padding-bottom: 5px; /* Space below the title */
+}
+
+.favorite-dishes {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.favorite-dishes li {
+    background: #f8f9fa; /* Light gray background for list items */
+    padding: 12px; /* Padding for list items */
+    margin: 5px 0; /* Space between list items */
+    border-radius: 5px; /* Rounded corners */
+    transition: background 0.3s, transform 0.2s; /* Smooth transition for hover */
+}
+
+.favorite-dishes li:hover {
+    background: #007bff; /* Change background on hover */
+    color: #ffffff; /* Change text color on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.recipe {
+    background: #f8f9fa; /* Light gray background for recipe section */
+    padding: 12px; /* Padding for recipe section */
+    margin: 5px 0; /* Space between recipe sections */
+    border-radius: 5px; /* Rounded corners */
 }

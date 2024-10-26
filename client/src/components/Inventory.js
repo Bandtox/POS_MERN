@@ -8,12 +8,14 @@ const Inventory = () => {
   const [productPrice, setProductPrice] = useState(0);
   const [productDescription, setProductDescription] = useState('');
   const [productCuisineType, setProductCuisineType] = useState('');
+  const [productImageUrl, setProductImageUrl] = useState(''); // New state for image URL
 
   const [editProductId, setEditProductId] = useState(null);
   const [editProductName, setEditProductName] = useState('');
   const [editProductPrice, setEditProductPrice] = useState(0);
   const [editProductDescription, setEditProductDescription] = useState('');
   const [editProductCuisineType, setEditProductCuisineType] = useState('');
+  const [editProductImageUrl, setEditProductImageUrl] = useState(''); // New state for editing image URL
 
   useEffect(() => {
     fetchProducts();
@@ -34,13 +36,15 @@ const Inventory = () => {
         name: productName,
         price: productPrice,
         description: productDescription,
-        cuisineType: productCuisineType
+        cuisineType: productCuisineType,
+        imageUrl: productImageUrl // Include image URL
       };
       await axios.post('http://localhost/api/inventory/product', newProduct);
       setProductName('');
       setProductPrice(0);
       setProductDescription('');
       setProductCuisineType('');
+      setProductImageUrl(''); // Reset image URL
       fetchProducts();
     } catch (error) {
       console.error('Error adding product:', error);
@@ -62,7 +66,8 @@ const Inventory = () => {
         name: editProductName,
         price: editProductPrice,
         description: editProductDescription,
-        cuisineType: editProductCuisineType
+        cuisineType: editProductCuisineType,
+        imageUrl: editProductImageUrl // Include image URL for update
       };
       await axios.put(`http://localhost/api/inventory/product/${editProductId}`, updatedProduct);
       setEditProductId(null);
@@ -70,6 +75,7 @@ const Inventory = () => {
       setEditProductPrice(0);
       setEditProductDescription('');
       setEditProductCuisineType('');
+      setEditProductImageUrl(''); // Reset editing image URL
       fetchProducts();
     } catch (error) {
       console.error('Error updating product:', error);
@@ -82,6 +88,7 @@ const Inventory = () => {
     setEditProductPrice(product.price);
     setEditProductDescription(product.description);
     setEditProductCuisineType(product.cuisineType);
+    setEditProductImageUrl(product.imageUrl); // Set image URL for editing
   };
 
   const cancelEditing = () => {
@@ -90,6 +97,7 @@ const Inventory = () => {
     setEditProductPrice(0);
     setEditProductDescription('');
     setEditProductCuisineType('');
+    setEditProductImageUrl(''); // Reset editing image URL
   };
 
   // Group products by cuisine type
@@ -135,6 +143,13 @@ const Inventory = () => {
           onChange={(e) => setProductCuisineType(e.target.value)}
           className="input-field"
         />
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={productImageUrl}
+          onChange={(e) => setProductImageUrl(e.target.value)} // Image URL input for adding product
+          className="input-field"
+        />
         <button onClick={addProduct} className="add-button">Add Product</button>
       </div>
 
@@ -171,11 +186,18 @@ const Inventory = () => {
                         onChange={(e) => setEditProductCuisineType(e.target.value)}
                         className="input-field"
                       />
+                      <input
+                        type="text"
+                        value={editProductImageUrl}
+                        onChange={(e) => setEditProductImageUrl(e.target.value)} // Image URL input for editing product
+                        className="input-field"
+                      />
                       <button onClick={updateProduct} className="save-button">Save</button>
                       <button onClick={cancelEditing} className="cancel-button">Cancel</button>
                     </div>
                   ) : (
                     <div className="product-info">
+                      <img src={product.imageUrl} alt={product.name} className="product-image" /> {/* Display product image */}
                       {product.name} - Price: ₹{product.price} - {product.description} - Cuisine: {product.cuisineType}
                       <div className="button-group">
                         <button onClick={() => startEditing(product)} className="edit-button">Edit</button>

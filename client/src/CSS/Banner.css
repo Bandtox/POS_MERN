@@ -1,0 +1,16 @@
+/* Add this to your Banner.css */
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+.banner {
+  padding: 0 10px;
+  position: relative; /* Allows positioning of text */
+  margin-top: 10px; /* Space between navbar and carousel */
+}
+
+.banner img {
+  width: 100%; /* Make the image take the full width */
+  height: 400px; /* Set a fixed height for consistency */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  border-radius: 10px; /* Optional: adds rounded corners */
+}

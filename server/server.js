@@ -52,24 +52,4 @@ app.use('/api/auth', authRoutes);
 app.use("/api/inventory", require("./api/inventory"));
 app.use("/api/transactions", require("./api/transactions"));
 
-// Websocket logic for Live Cart
-// let liveCart;
-
-// io.on("connection", function (socket) {
-//   socket.on("cart-transaction-complete", function () {
-//     socket.broadcast.emit("update-live-cart-display", {});
-//   });
-
-//   socket.on("live-cart-page-loaded", function () {
-//     socket.emit("update-live-cart-display", liveCart);
-//   });
-
-//   socket.emit("update-live-cart-display", liveCart);
-
-//   socket.on("update-live-cart", function (cartData) {
-//     liveCart = cartData;
-//     socket.broadcast.emit("update-live-cart-display", liveCart);
-//   });
-// });
-
 server.listen(port, () => console.log(`Listening on port ${port}`));

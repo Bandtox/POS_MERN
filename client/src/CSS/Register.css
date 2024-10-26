@@ -7,7 +7,7 @@
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: url('D:\POS\client\src\res\background.jpg') no-repeat center center fixed;
+    background: url('D:\POS\client\src\res\bg-image.png') no-repeat center center fixed;
     background-size: cover;
     backdrop-filter: blur(5px);
 }

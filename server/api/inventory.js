@@ -13,7 +13,8 @@ const inventorySchema = new mongoose.Schema({
   name: String,
   price: Number,
   description: String,
-  cuisineType: String // New field for cuisine type
+  cuisineType: String,
+  imageUrl: String 
 });
 const Inventory = mongoose.model("Inventory", inventorySchema);
 
@@ -54,9 +55,10 @@ router.get("/products", async (req, res) => {
 });
 
 // Create inventory product
+// Create inventory product
 router.post("/product", async (req, res) => {
   try {
-    const newProduct = req.body;
+    const newProduct = req.body; // This should include name, price, description, cuisineType, and imageUrl
     const product = await Inventory.create(newProduct);
     res.send(product);
     // Optionally, perform other operations here
@@ -65,6 +67,7 @@ router.post("/product", async (req, res) => {
     res.status(500).send("Internal server error.");
   }
 });
+
 
 // Delete inventory product
 router.delete("/product/:productId", async (req, res) => {

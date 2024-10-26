@@ -45,24 +45,23 @@ const Products = ({ onAddToCart }) => {
           ))}
         </ul>
       </div>
+
       <div className="products-content">
-        <h1 className="products-title">Our Products</h1>
+        {/* Dynamic title based on selected cuisine */}
+        <h1 className="products-title">
+          {selectedCuisine === 'All' ? 'Our Products' : `${selectedCuisine} Products`}
+        </h1>
         <div className="products-grid">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <div key={product._id} className="product-card">
-                <img src="https://via.placeholder.com/150" alt={product.name} />
+                <img src={product.imageUrl} alt={product.name} />
                 <h2>{product.name}</h2>
                 <p>Price: ₹{product.price}</p>
                 <p>{product.description}</p>
                 <div className="product-options">
                   <label htmlFor={`quantity-${product._id}`}>Quantity:</label>
-                  <input
-                    type="number"
-                    id={`quantity-${product._id}`}
-                    min="1"
-                    defaultValue="1"
-                  />
+                  <input type="number" id={`quantity-${product._id}`} min="1" defaultValue="1" />
                   <label htmlFor={`spice-level-${product._id}`}>Spice Level:</label>
                   <select id={`spice-level-${product._id}`}>
                     <option value="mild">Mild</option>
