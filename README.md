@@ -68,6 +68,7 @@ CLIENT
 - **Inventory Management**: Keep track of stock.
 - **Sales Processing**: Process sales transactions.
 - **Customer Management**: Manage customer information and purchase history.
+- **Admin Login**: To login as admin use "admin@pos.com" for username and password as "admin" 
 
 ## Technologies Used
 
